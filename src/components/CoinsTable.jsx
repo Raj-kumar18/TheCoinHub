@@ -11,7 +11,7 @@ import {
     TableBody,
     TableCaption,
     TableCell,
-    TableFooter, 
+    TableFooter,
     TableHead,
     TableHeader,
     TableRow,
@@ -49,13 +49,13 @@ const CoinsTable = () => {
         )
     }
 
-    const pageHandleClick=(selectedPage)=>{
-        if(
-            selectedPage >=1 &&
+    const pageHandleClick = (selectedPage) => {
+        if (
+            selectedPage >= 1 &&
             selectedPage <= handleSearch().length &&
             selectedPage != page
         )
-        setPage(selectedPage)
+            setPage(selectedPage)
     }
     return (
         <>
@@ -132,40 +132,43 @@ const CoinsTable = () => {
 
                         </Table>
                     )}
-                   <div className="pagination flex items-center space-x-2 mt-4">
+            <div className="pagination flex flex-wrap items-center justify-center gap-2 mt-4">
     <span
         className="px-3 py-1 bg-gray-200 text-gray-700 rounded cursor-pointer hover:bg-gray-300"
-       onClick={()=>pageHandleClick(page-1)}
+        onClick={() => pageHandleClick(page - 1)}
     >
         Prev
     </span>
-    {
-        [...Array(Math.ceil(handleSearch().length / 10))].map((_, i) => (
-            <span
-                key={i}
-                onClick={() => pageHandleClick(i + 1)}
-                className={`px-3 py-1 rounded cursor-pointer ${
-                    page === i + 1
-                        ? 'bg-orange-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-            >
-                {i + 1}
-            </span>
-        ))
-    }
+    <div className="flex flex-wrap justify-center gap-1">
+        {
+            [...Array(Math.ceil(handleSearch().length / 10))].map((_, i) => (
+                <span
+                    key={i}
+                    onClick={() => pageHandleClick(i + 1)}
+                    className={`px-2 py-1 md:px-3 rounded cursor-pointer ${
+                        page === i + 1
+                            ? 'bg-orange-500 text-white'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                >
+                    {i + 1}
+                </span>
+            ))
+        }
+    </div>
     <span
         className="px-3 py-1 bg-gray-200 text-gray-700 rounded cursor-pointer hover:bg-gray-300"
-        onClick={()=>pageHandleClick(page+1)}
+        onClick={() => pageHandleClick(page + 1)}
     >
         Next
     </span>
 </div>
 
+
                 </div>
 
             </div>
-    
+
 
         </>
     )
